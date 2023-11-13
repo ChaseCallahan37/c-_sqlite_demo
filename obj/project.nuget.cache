@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wYBYJVjj+P0CIoRWtWOy56aMBpcdIwLJpQQRzIQSy0Ae0FTDwyh78v8Y+gAghgGHzhfZlEGN1aX7Tb4DWpORlA==",
+  "success": true,
+  "projectFilePath": "/home/chase/projects/221/test/sqlite/sqlite.csproj",
+  "expectedPackageFiles": [
+    "/home/chase/.nuget/packages/stub.system.data.sqlite.core.netstandard/1.0.118/stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
+    "/home/chase/.nuget/packages/system.data.sqlite.core/1.0.118/system.data.sqlite.core.1.0.118.nupkg.sha512"
+  ],
+  "logs": []
+}
