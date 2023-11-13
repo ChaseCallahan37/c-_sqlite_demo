@@ -6,27 +6,31 @@ Create a db file ex: books.db
 
 Example code:
 
-using System.Data.SQLite;
+Begin Main
 
-string connectionString = @"Data Source=/home/chase/projects/221/test/sqlite/books.db;Version=3;";
+    using System.Data.SQLite;
 
-var databaseConnection = new SQLiteConnection(connectionString);
+    string connectionString = @"Data Source=/home/chase/projects/221/test/sqlite/books.db;Version=3;";
 
-databaseConnection.Open();
+    var databaseConnection = new SQLiteConnection(connectionString);
 
-// GetSQLVersion(databaseConnection);
+    databaseConnection.Open();
 
-CreateBooksTable(databaseConnection);
+    // GetSQLVersion(databaseConnection);
 
-AddBooks(databaseConnection);
+    CreateBooksTable(databaseConnection);
 
-ReadBooks(databaseConnection);
+    AddBooks(databaseConnection);
 
-UpdateBooks(databaseConnection);
+    ReadBooks(databaseConnection);
 
-ReadBooks(databaseConnection);
+    UpdateBooks(databaseConnection);
 
-databaseConnection.Close();
+    ReadBooks(databaseConnection);
+
+    databaseConnection.Close();
+
+End Main
 
     static void GetSQLVersion(SQLiteConnection conn)
     {
@@ -44,64 +48,64 @@ databaseConnection.Close();
 
     }
 
-static void CreateBooksTable(SQLiteConnection conn)
-{
 
-    using var cmd = new SQLiteCommand(conn);
-
-    cmd.CommandText = "DROP TABLE IF EXISTS books";
-    cmd.ExecuteNonQuery();
-
-    cmd.CommandText = @"
-    CREATE TABLE books(
-        id INTEGER PRIMARY KEY,
-        title TEXT,
-        author TEXT
-    );";
-    cmd.ExecuteNonQuery();
-
-}
-
-static void AddBooks(SQLiteConnection conn)
-{
-using var cmd = new SQLiteCommand(conn);
-
-    cmd.CommandText = @"INSERT INTO books(title, author)
-                        VALUES('Mistborn','Brandon Sanderson')";
-    cmd.ExecuteNonQuery();
-
-
-    cmd.CommandText = @"INSERT INTO books(title, author)
-                        VALUES('Oathbringer','Brandon Sanderson')";
-    cmd.ExecuteNonQuery();
-
-}
-
-static void ReadBooks(SQLiteConnection conn)
-{
-using var cmd = new SQLiteCommand(conn);
-
-    cmd.CommandText = @"SELECT * FROM books;";
-
-    using var rdr = cmd.ExecuteReader();
-
-    while (rdr.Read())
+    static void CreateBooksTable(SQLiteConnection conn)
     {
-        System.Console.WriteLine($"{rdr.GetInt32(0)} {rdr.GetString(1)} {rdr.GetString(2)}");
+
+        using var cmd = new SQLiteCommand(conn);
+
+        cmd.CommandText = "DROP TABLE IF EXISTS books";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = @"
+        CREATE TABLE books(
+            id INTEGER PRIMARY KEY,
+            title TEXT,
+            author TEXT
+        );";
+        cmd.ExecuteNonQuery();
+
     }
 
-}
+    static void AddBooks(SQLiteConnection conn)
+    {
+        using var cmd = new SQLiteCommand(conn);
 
-static void UpdateBooks(SQLiteConnection conn)
-{
-using var cmd = new SQLiteCommand(conn);
+        cmd.CommandText = @"INSERT INTO books(title, author)
+                            VALUES('Mistborn','Brandon Sanderson')";
+        cmd.ExecuteNonQuery();
 
-    cmd.CommandText = @"UPDATE books
-                        SET
-                            title = 'Green Eggs & Ham',
-                            author = 'Dr. Suess'
-                        WHERE id = 1";
 
-    cmd.ExecuteNonQuery();
+        cmd.CommandText = @"INSERT INTO books(title, author)
+                            VALUES('Oathbringer','Brandon Sanderson')";
+        cmd.ExecuteNonQuery();
+    }
 
-}
+    static void ReadBooks(SQLiteConnection conn)
+    {
+        using var cmd = new SQLiteCommand(conn);
+
+        cmd.CommandText = @"SELECT * FROM books;";
+
+        using var rdr = cmd.ExecuteReader();
+
+        while (rdr.Read())
+        {
+            System.Console.WriteLine($"{rdr.GetInt32(0)} {rdr.GetString(1)} {rdr.GetString(2)}");
+        }
+
+    }
+
+    static void UpdateBooks(SQLiteConnection conn)
+    {
+        using var cmd = new SQLiteCommand(conn);
+
+        cmd.CommandText = @"UPDATE books
+                            SET
+                                title = 'Green Eggs & Ham',
+                                author = 'Dr. Suess'
+                            WHERE id = 1";
+
+        cmd.ExecuteNonQuery();
+
+    }
