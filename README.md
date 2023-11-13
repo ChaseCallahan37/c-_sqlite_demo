@@ -28,21 +28,21 @@ ReadBooks(databaseConnection);
 
 databaseConnection.Close();
 
-static void GetSQLVersion(SQLiteConnection conn)
-{
-conn.Open();
+    static void GetSQLVersion(SQLiteConnection conn)
+    {
+        conn.Open();
 
-    string sqlStatement = "SELECT SQLITE_VERSION()";
+        string sqlStatement = "SELECT SQLITE_VERSION()";
 
-    using var sqlCommand = new SQLiteCommand(sqlStatement, conn);
+        using var sqlCommand = new SQLiteCommand(sqlStatement, conn);
 
-    string result = sqlCommand.ExecuteScalar().ToString();
+        string result = sqlCommand.ExecuteScalar().ToString();
 
-    System.Console.WriteLine($"SQLite version: {result}");
+        System.Console.WriteLine($"SQLite version: {result}");
 
-    conn.Close();
+        conn.Close();
 
-}
+    }
 
 static void CreateBooksTable(SQLiteConnection conn)
 {
