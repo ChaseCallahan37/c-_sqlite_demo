@@ -1,8 +1,12 @@
-Run command: dotnet new console
+Generate console app
 
-Run command: dotnet add package System.Data.SQLite.Core
+    dotnet new console
 
-Create a db file ex: books.db
+Add SQLite packages
+
+    dotnet add package System.Data.SQLite.Core
+
+Create a SQLite database in the root of the project books.db
 
 Example code:
 
@@ -48,6 +52,7 @@ End Main
 
     }
 
+Example of creating a table
 
     static void CreateBooksTable(SQLiteConnection conn)
     {
@@ -67,6 +72,8 @@ End Main
 
     }
 
+Example of adding a record
+
     static void AddBooks(SQLiteConnection conn)
     {
         using var cmd = new SQLiteCommand(conn);
@@ -80,6 +87,8 @@ End Main
                             VALUES('Oathbringer','Brandon Sanderson')";
         cmd.ExecuteNonQuery();
     }
+
+Example of reading from the database
 
     static void ReadBooks(SQLiteConnection conn)
     {
@@ -95,6 +104,8 @@ End Main
         }
 
     }
+
+Example of updating a record
 
     static void UpdateBooks(SQLiteConnection conn)
     {
